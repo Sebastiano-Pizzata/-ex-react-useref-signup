@@ -12,9 +12,9 @@ export default function App() {
 
   const onSubmit = (e) => {
     e.preventDefault()
-    if (!fullName || !username || !password || experience <= 0 || !description) {
+    if (!fullName.trim() || !username.trim() || !password.trim() || experience <= 0 || !description.trim()) {
       return console.log('Perfavore compila tutti i campi')
-    } else if (!special || special === '') {
+    } else if (!special.trim() || special.trim() === '') {
       return console.log('Dichiara la tua specializzazione')
     } else {
       console.log(`Effettuato submit con :
