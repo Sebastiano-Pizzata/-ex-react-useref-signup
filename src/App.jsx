@@ -12,8 +12,7 @@ export default function App() {
 
   const onSubmit = (e) => {
     e.preventDefault()
-    const experienceNumber = Number(experience)
-    if (!fullName || !username || !password || experienceNumber <= 0 || !description) {
+    if (!fullName || !username || !password || experience <= 0 || !description) {
       return console.log('Perfavore compila tutti i campi')
     } else if (!special || special === '') {
       return console.log('Dichiara la tua specializzazione')
@@ -23,11 +22,10 @@ export default function App() {
       - Username :${username}
       - Password :${password}
       - Specializzazione :${special}
-      - Anni di esperienza :${experienceNumber}
+      - Anni di esperienza :${experience}
       - Breve descrizione :${description}
       `)
     }
-
   }
 
   return (
