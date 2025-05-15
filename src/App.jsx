@@ -1,10 +1,7 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useRef } from 'react'
 
 
 export default function App() {
-
-
-
   const [fullName, setFullName] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -44,7 +41,12 @@ export default function App() {
   }, [description]);
 
   const onSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
+
+    const fullName = fullNameRef.current.value;
+    const special = specialRef.current.value;
+    const experience = experienceRef.current.value;
+
     if (!fullName.trim() ||
       !username.trim() ||
       !password.trim() ||
@@ -66,11 +68,15 @@ export default function App() {
     }
   }
 
+
+  const fullNameRef = useRef();
+  const experienceRef = useRef();
+  const specialRef = useRef();
+
   return (
     <>
       <h1>Form con Campi Controllati e Non</h1>
       <div className="container row col-3 p-5">
-
         <form onSubmit={onSubmit}>
           <div className="input-group mb-3">
             <label>
@@ -78,11 +84,9 @@ export default function App() {
                 type="text"
                 className="form-control"
                 placeholder="Nome completo"
-                value={fullName}
-                onChange={e => setFullName(e.target.value)}
+                ref={fullNameRef}
               />
             </label>
-
           </div>
           <div className="input-group mb-3">
             <label>
@@ -101,7 +105,6 @@ export default function App() {
                 )
               }
             </label>
-
           </div>
           <div className="input-group mb-3">
             <label>
@@ -124,8 +127,7 @@ export default function App() {
           <div className="input-group mb-3">
             <label>
               <select className="form-select"
-                value={special}
-                onChange={e => SetSpecial(e.target.value)}>
+                ref={specialRef}>
                 <option value=''>Specializzazione</option>
                 <option value="Full-Stack">Full-Stack</option>
                 <option value="Frontend">Frontend</option>
@@ -139,8 +141,7 @@ export default function App() {
                 type="number"
                 className="form-control"
                 placeholder="Anni di esperienza"
-                value={experience}
-                onChange={e => setExperience(e.target.value)}
+                ref={experienceRef}
               />
             </label>
           </div>
